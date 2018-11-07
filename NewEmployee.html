@@ -1,0 +1,161 @@
+<!--
+Author: Brendan Burdick
+Date: April 20th, 2017
+Professor: Andrew Jung
+Filename: NewEmployee.html
+
+Purpose of Program:
+The purpose of this file is to use regular expressions to check form input to see if
+the correct input is being used. In cases where improper input is being used, an alert 
+is displayed letting the user know which input is incorrect. Once all input is appropriate,
+the form data is passed to AddNewEmployee.php so that it can be added to the PersonnelManager
+database.
+
+NOTE: This file is used within NewEmployee.php.
+-->
+
+<html>
+    <head>
+        <title>New Employee</title>
+        <link href="style.css" type="text/css">
+        
+        <script>
+            function ValidateNewEmployee()
+            {
+                
+                var newFirstname = NewEmployeeForm.elements["Firstname"].value; //Check the first name.
+                var newLastname = NewEmployeeForm.elements["Lastname"].value; //Check the last name.
+                var newUsername = NewEmployeeForm.elements["Username"].value; //Check the username.
+                var newPassword = NewEmployeeForm.elements["Password"].value; //Check the password.
+                var newSalary = NewEmployeeForm.elements["Salary"].value; //Check the salary.
+                
+                var NameRegExp = /^([a-zA-Z]{1,15})$/; //Regular expression to find valid first and last names.
+                var UsernameRegExp = /^([a-zA-Z0-9-_]{1,15})$/; //Regular expression to find valid usernames.
+                var PasswordRegExp = /^([a-zA-Z0-9!@#$%^&*()+-<>?{}_]{1,15})$/; //Regular expression to find valid usernames.
+                var SalaryRegExp = /^([0-9]{4,6})$/; //Regular expression to find valid usernames.
+                
+                var FirstnameValidationStatus = NameRegExp.exec(newFirstname);
+                var LastnameValidationStatus = NameRegExp.exec(newLastname);
+                var UsernameValidationStatus = UsernameRegExp.exec(newUsername);
+                var PasswordValidationStatus = PasswordRegExp.exec(newPassword);
+                var SalaryValidationStatus = SalaryRegExp.exec(newSalary);
+                
+
+                if(!FirstnameValidationStatus){ //If there was an error, display error message.
+                    alert("Oops! Your first name was typed incorrectly. Don't forget that you can only use upper and lower case letters!");
+                    return false;
+                }
+                
+                else if(!LastnameValidationStatus){ //If there was an error, display error message.
+                    alert("Oops! Your last name was typed incorrectly. Don't forget that you can only use upper and lower case letters!");
+                    return false;
+                }
+                
+                else if(!UsernameValidationStatus){ //If there was an error, display error message.
+                    alert("Oops! Your username was typed incorrectly. Don't forget that you can only use: A-Z, a-z, 0-9, '-' and '_'.");
+                    return false;
+                }
+                
+                else if(!PasswordValidationStatus){ //If there was an error, display error message.
+                    alert("Oops! Your password was typed incorrectly. Don't forget that you can only use the characters listed here: A-Z, a-z, 0-9, ! @ # $ % ^ & * ( ) + - <> ? { } _");
+                    return false;
+                }
+                
+                else if(!SalaryValidationStatus){ //If there was an error, display error message.
+                    alert("Oops! Your salary was typed incorrectly. Don't forget that you can only use numbers (without commas)!");
+                    return false;
+                }
+                
+                else{
+                    return true;
+                }
+            }
+            
+        </script>
+        
+        <style>
+            table{
+                padding: 20px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <br />
+        <form name="NewEmployeeForm" action="./AddNewEmployee.php" method="POST" onsubmit="return ValidateNewEmployee(this.form)">
+            
+            <center><h1 style="font-family:Comic Sans MS, cursive, sans-serif;">Enter Information for New Employee</h1>
+            
+            <table bgcolor="lightgrey">
+                <tr>
+                    <td>Please enter the First Name: </td>
+                    <td><input type="text" name="Firstname"></td>
+                </tr>
+                <tr>
+                    <td>Please enter the Last Name: </td>
+                    <td><input type="text" name="Lastname"></td>
+                </tr>
+                <tr>
+                    <td>Please enter the Date Of Birth: </td>
+                    <td><input type="date" name="DOB" min="1917-01-01"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Please enter the Gender: </td>
+                    <td>
+                        <input type="radio" name="Gender" value="Male">Male<br />
+                        <input type="radio" name="Gender" value="Female">Female<br />
+                        <input type="radio" name="Gender" value="Other">Other<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Please enter the Demographic that most fits: </td>
+                    <td>
+                        <input type="radio" name="Demographic" value="Caucasian">Caucasian<br />
+                        <input type="radio" name="Demographic" value="African American">African American<br />
+                        <input type="radio" name="Demographic" value="Asian">Asian<br />
+                        <input type="radio" name="Demographic" value="Indian">Indian<br />
+                        <input type="radio" name="Demographic" value="Native American">Native American
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Please enter desired username: </td>
+                    <td><input type="text" name="Username"></td>
+                </tr>
+                <tr>
+                    <td>Please enter desired password: </td>
+                    <td><input type="password" name="Password"></td>
+                </tr>
+                <tr>
+                    <td>Please enter Date Joined: </td>
+                    <td><input type="date" name="DateJoin" min="2000-01-01"></td>
+                </tr>
+                <tr>
+                    <td>Please enter Annual Salary: </td>
+                    <td>$<input type="text" name="Salary"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                    Which deparment is the employee joining?</td>
+                    <td>
+                        <input type="radio" name="Dept" value="1">Software Development<br />
+                        <input type="radio" name="Dept" value="2">System Analysis<br />
+                        <input type="radio" name="Dept" value="3">Quality Assurance<br />
+                        <input type="radio" name="Dept" value="4">Database Management<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td align=center colspan="2"><input type="submit" value="Submit"><input type="reset" value="Reset"></td>
+                </tr>
+            </table></center>
+        </form>
+    </body>
+</html>

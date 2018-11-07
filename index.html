@@ -1,0 +1,49 @@
+<!--
+Author: Dylan Schofield
+Date: April 20th, 2017
+Professor: Andrew Jung
+Filename: index.html
+
+Purpose of Program:
+The purpose of this file is to provide a login page for the PersonnelManager system. This file has
+a video background and a login form which is passed to main_page.php.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Head Meets Body - Login</title>
+	<link href="./style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="videoWrapper">
+		<video autoplay="true" id="film" loop="true" style="z-index:8;"><source src="./typing.webm" type="video/webm"></video>
+	</div>
+	<div id=loginwrapper>
+	<div id="login">
+        
+		<form action="./main_page.php" id="loginform" method="post" name="loginform">
+			<center>
+				<img align="center" alt="Company Logo here" height="50%" src="sample_logo.png" width="50%"><br>
+			</center>
+            
+			<p><label for="user_login"><strong>User Name:</strong><br>
+			<input name="username" size="20" type="text"></label></p>
+			<p><label for="user_pass"><strong>Password:</strong><br>
+			<input name="password" size="20" type="password"></label></p>
+            <p><label for="user_pass"><strong>Is this the first time the system is being used?</strong><br>
+			<input name="firstTimeStatus" type="radio" value="Yes">Yes
+            <input name="firstTimeStatus" type="radio" value="No" checked>No</label></p>
+			
+            <center>
+				<p class="submit"><input name="submit" type="submit" value="Submit"> <input name="reset" type="reset" value="Reset"></p>
+				<p></p>
+			</center>
+            
+		</form>
+        
+		<h3>Contact Us:<br>
+		<a href="mailto:contactus@headmeetsbody.com">contact@headmeetsbody.com</h3>
+	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!--
+Author: Karen Sullivan
+Date: April 20th, 2017
+Professor: Andrew Jung
+Filename: addImage.html
+
+Purpose of Program:
+The purpose of this file is to provide a means of uploading images to the PersonnelManager
+database. Upon submission, the data is sent to insert_PersonnelManager.php where it is
+uploaded to the database.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Employee Image</title>
+    </head>
+    <body>
+        <br /><br />
+        
+        <h2 align=center>Please add a profile picture:</h2>
+        <center><form enctype="multipart/form-data" action="insert_PersonnelManager.php" method="post" name="changer">
+            <input name="MAX_FILE_SIZE" value="102400" type="hidden">
+            <input name="image" accept="image/jpeg" type="file">
+            <input value="Submit" type="submit">
+        </form></center>
+        
+        <br /><br />
+    </body>
+</html>
